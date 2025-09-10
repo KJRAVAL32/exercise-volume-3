@@ -20,18 +20,15 @@ class movement(products):
         for i in movements:
             print(f"Product: {i.product.name} : {i.from_location.name}  --> {i.to_location.name}  Quantity: {i.quantity}")
         print("------------------------------------------------------------------------------------")
-        for k in product:
-            for j in move:
-                if k.stock_at_locations[j.from_location] < j.quantity:
-                    print("Not have stock")
-                else:
-                    k.stock_at_locations[j.from_location] -= j.quantity
-                    k.stock_at_locations[j.to_location] += j.quantity
-                break
-            break
-
-        print("stock:-")
-        
+        if product.stock_at_locations[move.from_location] < move.quantity:
+            print("Not have stock")
+        else:
+            product.stock_at_locations[move.from_location] -= move.quantity
+            product.stock_at_locations[move.to_location] += move.quantity
+            print(f"{product.name}--{product.code}:-")
+            for a, b in product.stock_at_locations.items():
+                print(a.name, b)
+            print("------------------------------------------------------")
 loc1 = location("warehouse", "101")
 loc2 = location("store1", "102")
 loc3 = location("store2", "103")
@@ -41,17 +38,21 @@ prod1 = products("laptop", "001", "electric things", "60000", {loc1: 500, loc2: 
 prod2 = products("Monitor", "002", "electric things", "100000", {loc2: 200, loc4: 10})
 prod3 = products("cpu", "003", "electric things", "400000", {loc3: 20, loc4: 100})
 prod4 = products("graphic card", "004", "electric things", "200000", {loc1: 900, loc2: 100})
-prod5 = products("Hard disk", "005", "electric things", "10000", {loc1: 200, loc3: 100, loc4: 150, loc2: 10})
+prod5 = products("Hard disk", "005", "electric things", "10000", {loc1: 200, loc3: 100, loc4: 150, loc2: 100})
 po = [prod1, prod2, prod3, prod4, prod5]
 move1 = movement(loc1, loc2, prod1, 10)
 move6 = movement(loc1, loc2,  prod1, 5)
 move2 = movement(loc2, loc4, prod2, 20)
 move3 = movement(loc3, loc4, prod3, 20)
 move4 = movement(loc1, loc2, prod4, 10)
-move5 = movement(loc2, loc1, prod5, 200)
+move5 = movement(loc2, loc1, prod5, 20)
 movements = [move1, move2, move3, move4, move5]
 print("Product Movements:-")
-movement.movement_by_product(po, movements)
+movement.movement_by_product(prod1, move1)
+movement.movement_by_product(prod2, move2)
+movement.movement_by_product(prod3, move3)
+movement.movement_by_product(prod4, move4)
+movement.movement_by_product(prod5, move5)
 for i in locations:
     print("--------------------------------------")
     print(i.name, i.code, ":-")
