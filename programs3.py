@@ -17,8 +17,8 @@ class movement:
         self.quantity = int(quantity)
     @staticmethod
     def movement_by_product(product, move):
-        for i in movements:
-            print(f"Product: {i.product.name} : {i.from_location.name}  --> {i.to_location.name}  Quantity: {i.quantity}")
+        # for i in movements:
+        print(f"Product: {product.name} : {move.from_location.name}  --> {move.to_location.name}  Quantity: {move.quantity}")
         print("------------------------------------------------------------------------------------")
         if product.stock_at_locations[move.from_location] < move.quantity:
             print("Not have stock")
