@@ -9,7 +9,7 @@ class location:
     def __init__(self, name, code):
         self.name = name
         self.code = int(code)
-class movement(products):
+class movement:
     def __init__(self, from_location, to_location, product, quantity):
         self.from_location = from_location
         self.to_location = to_location
@@ -41,8 +41,7 @@ prod4 = products("graphic card", "004", "electric things", "200000", {loc1: 900,
 prod5 = products("Hard disk", "005", "electric things", "10000", {loc1: 200, loc3: 100, loc4: 150, loc2: 100})
 po = [prod1, prod2, prod3, prod4, prod5]
 move1 = movement(loc1, loc2, prod1, 10)
-move6 = movement(loc1, loc2,  prod1, 5)
-move2 = movement(loc2, loc4, prod2, 20)
+move2 = movement(loc2, loc4, prod2, 2000)
 move3 = movement(loc3, loc4, prod3, 20)
 move4 = movement(loc1, loc2, prod4, 10)
 move5 = movement(loc2, loc1, prod5, 20)
