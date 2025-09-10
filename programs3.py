@@ -21,7 +21,7 @@ class movement:
         print(f"Product: {product.name} : {move.from_location.name}  --> {move.to_location.name}  Quantity: {move.quantity}")
         print("------------------------------------------------------------------------------------")
         if product.stock_at_locations[move.from_location] < move.quantity:
-            print("Not have stock")
+            print("Not have stock of",product.name,"at",move.from_location.name,"to move",move.quantity,"units.")
         else:
             product.stock_at_locations[move.from_location] -= move.quantity
             product.stock_at_locations[move.to_location] += move.quantity
@@ -57,4 +57,4 @@ for i in locations:
     print(i.name, i.code, ":-")
     for j in po:
         if i in j.stock_at_locations.keys():
-            print(j.name, j.stock_at_locations[i])
+            print(j.name, ":",j.stock_at_locations[i])
