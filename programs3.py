@@ -26,8 +26,7 @@ class movement:
             product.stock_at_locations[move.from_location] -= move.quantity
             product.stock_at_locations[move.to_location] += move.quantity
             print(f"{product.name}--{product.code}:-")
-            for a, b in product.stock_at_locations.items():
-                print(a.name, b)
+            [print(a.name, b) for a, b in product.stock_at_locations.items()]
             print("------------------------------------------------------")
 loc1 = location("warehouse", "101")
 loc2 = location("store1", "102")
@@ -52,9 +51,10 @@ movement.movement_by_product(prod2, move2)
 movement.movement_by_product(prod3, move3)
 movement.movement_by_product(prod4, move4)
 movement.movement_by_product(prod5, move5)
+print("Updated stock at locations:-")
 for i in locations:
     print("--------------------------------------")
     print(i.name, i.code, ":-")
     for j in po:
         if i in j.stock_at_locations.keys():
-            print(j.name,j.stock_at_locations[i])
+            print(j.name, j.stock_at_locations[i])
