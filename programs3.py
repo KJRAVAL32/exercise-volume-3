@@ -39,14 +39,14 @@ prod2 = products("Monitor", "002", "electric things", "100000", {loc2: 200, loc4
 prod3 = products("cpu", "003", "electric things", "400000", {loc3: 20, loc4: 100})
 prod4 = products("graphic card", "004", "electric things", "200000", {loc1: 900, loc2: 100})
 prod5 = products("Hard disk", "005", "electric things", "10000", {loc1: 200, loc3: 100, loc4: 150, loc2: 10})
-po = [prod5, prod4, prod3, prod2, prod1]
+po = [prod1, prod2, prod3, prod4, prod5]
 move1 = movement(loc1, loc2, prod1, 10)
 move6 = movement(loc1, loc2,  prod1, 5)
 move2 = movement(loc2, loc4, prod2, 20)
 move3 = movement(loc3, loc4, prod3, 20)
 move4 = movement(loc1, loc2, prod4, 10)
 move5 = movement(loc2, loc1, prod5, 200)
-movements = [move5, move4, move3, move2, move1]
+movements = [move1, move2, move3, move4, move5]
 print("Product Movements:")
 movement.movement_by_product(prod1, move1)
 movement.movement_by_product(prod2, move2)
