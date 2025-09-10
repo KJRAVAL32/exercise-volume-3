@@ -20,15 +20,18 @@ class movement(products):
         for i in movements:
             print(f"Product: {i.product.name} : {i.from_location.name}  --> {i.to_location.name}  Quantity: {i.quantity}")
         print("------------------------------------------------------------------------------------")
-        if product.stock_at_locations[move.from_location] < move.quantity:
-            print("Not have stock")
-        else:
-            product.stock_at_locations[move.from_location] -= move.quantity
-            product.stock_at_locations[move.to_location] += move.quantity
-        print("Stock at locations:")
-        print(f"{product.name}-{product.code}:{product.stock_at_locations}")
-        print("---------------------------------------------------------------------")
+        for k in product:
+            for j in move:
+                if k.stock_at_locations[j.from_location] < j.quantity:
+                    print("Not have stock")
+                else:
+                    k.stock_at_locations[j.from_location] -= j.quantity
+                    k.stock_at_locations[j.to_location] += j.quantity
+                break
+            break
 
+        print("stock:-")
+        
 loc1 = location("warehouse", "101")
 loc2 = location("store1", "102")
 loc3 = location("store2", "103")
@@ -47,16 +50,11 @@ move3 = movement(loc3, loc4, prod3, 20)
 move4 = movement(loc1, loc2, prod4, 10)
 move5 = movement(loc2, loc1, prod5, 200)
 movements = [move1, move2, move3, move4, move5]
-print("Product Movements:")
-movement.movement_by_product(prod1, move1)
-movement.movement_by_product(prod2, move2)
-movement.movement_by_product(prod3, move3)
-movement.movement_by_product(prod4, move4)
-movement.movement_by_product(prod5, move5)
-movement.movement_by_product(prod5, move6)
+print("Product Movements:-")
+movement.movement_by_product(po, movements)
 for i in locations:
     print("--------------------------------------")
-    print(i.name, i.code, ":")
+    print(i.name, i.code, ":-")
     for j in po:
         if i in j.stock_at_locations.keys():
             print(j.name,j.stock_at_locations[i])
