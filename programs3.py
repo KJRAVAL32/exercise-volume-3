@@ -5,29 +5,44 @@ class products:
         self.categeoy = categeoy
         self.price = int(price)
         self.stock_at_locations = stock_at_locations
+
+
 class location:
     def __init__(self, name, code):
         self.name = name
         self.code = int(code)
+
+
 class movement:
     def __init__(self, from_location, to_location, product, quantity):
         self.from_location = from_location
         self.to_location = to_location
         self.product = product
         self.quantity = int(quantity)
+
     @staticmethod
     def movement_by_product(product, move):
         # for i in movements:
-        print(f"Product: {product.name} : {move.from_location.name}  --> {move.to_location.name}  Quantity: {move.quantity}")
+        print(f"Product: {product.name} : {move.from_location.name}  --> {move.to_location.name} | Quantity: {move.quantity}")
         print("------------------------------------------------------------------------------------")
         if product.stock_at_locations[move.from_location] < move.quantity:
-            print("Not have stock of",product.name,"at",move.from_location.name,"to move",move.quantity,"units.")
+            print("Not have stock of", product.name, "at", move.from_location.name, "to move", move.quantity, "units.")
         else:
             product.stock_at_locations[move.from_location] -= move.quantity
             product.stock_at_locations[move.to_location] += move.quantity
             print(f"{product.name}--{product.code}:-")
-            [print(a.name, b) for a, b in product.stock_at_locations.items()]
+            [print("  ", a.name, ":", b) for a, b in product.stock_at_locations.items()]
             print("------------------------------------------------------")
+
+    def print_movements(self):
+        print("Updated stock at locations:-")
+        for i in locations:
+            print("--------------------------------------")
+            print(i.name, i.code, ":-")
+            for j in po:
+                if i in j.stock_at_locations.keys():
+                    print("    ", j.name, ":", j.stock_at_locations[i])
+
 loc1 = location("warehouse", "101")
 loc2 = location("store1", "102")
 loc3 = location("store2", "103")
@@ -51,10 +66,5 @@ movement.movement_by_product(prod2, move2)
 movement.movement_by_product(prod3, move3)
 movement.movement_by_product(prod4, move4)
 movement.movement_by_product(prod5, move5)
-print("Updated stock at locations:-")
-for i in locations:
-    print("--------------------------------------")
-    print(i.name, i.code, ":-")
-    for j in po:
-        if i in j.stock_at_locations.keys():
-            print(j.name, ":",j.stock_at_locations[i])
+movements[0].print_movements()
+
